@@ -59,7 +59,7 @@ show_histogram_text(const vector<size_t>& bins){
      const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
 
 
-    const bool scaling_needed = max_count > MAX_ASTERISK;
+    const bool scaling_needed = max_count < MAX_ASTERISK;
 
 
     for(size_t bin : bins){
@@ -95,9 +95,13 @@ svg_text(double left, double baseline, string text) {
 }
 
 void
- svg_rect(double x, double y, double width, double height){
-    cout << "<rect x='" << x <<"' y='" << y << "' width='" << width <<"' height='" << height << "' />";
+ svg_rect(double x, double y, double width, double height,
+        string stroke = "black", string fil = "black"){
+    cout << "<rect x='" << x <<"' y='" << y << "' width='" << width << "' height='" << height
+    << "' stroke='" << stroke << "' fill='" << fil << "' />";
 }
+
+
 
 
 
@@ -133,7 +137,7 @@ show_histogram_svg(const vector<size_t>& bins) {
     for (size_t bin : bins) {
         const double bin_width = BLOCK_WIDTH * bin;
         svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT);
+        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "red", "#ffeeee");
         top += BIN_HEIGHT;
     }
 
@@ -164,7 +168,7 @@ int main()
 
     //SHOW HISTOGRAM
   //  show_histogram_text(bins);
-  show_histogram_svg(bins);
+    show_histogram_svg(bins);
 
     return 0;
 }
