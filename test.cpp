@@ -31,14 +31,26 @@ test_one_number(){
 
 void
 test_empty_vector(){
+    double min =5;
+    double max =5 ;
+    find_minmax({}, min, max);
+    assert(min == 5);
+    assert(max == 5 );
+}
+
+void
+test_same_numbers(){
     double min;
     double max;
-    find_minmax({}, min, max);
-    assert(min == 0);
-    assert(max == 0);
+    find_minmax({2,2,2}, min, max);
+    assert(min == 2);
+    assert(max == 2);
 }
 
 int main() {
     test_positive();
     test_negative();
+    test_one_number();
+    test_empty_vector();
+    test_same_numbers();
 }

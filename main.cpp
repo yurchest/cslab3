@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "histogram.h"
-
+#include "svg.h"
 
 using namespace std;
 
