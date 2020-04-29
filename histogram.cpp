@@ -49,24 +49,15 @@ make_histogram(const vector<double>& numbers, size_t& bin_count){
         }
     bins[bin_index]++;
     }
+
     return bins;
 }
 
 void
 show_histogram_text(const vector<size_t>& bins){
 
-    size_t max_count = bins[0];
-    for(size_t bin : bins){
-        if (bin > max_count) {
-            max_count = bin;
-        }
-     }
-
-     const size_t SCREEN_WIDTH = 80;
-     const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
 
 
-    const bool scaling_needed = max_count < MAX_ASTERISK;
 
 
     for(size_t bin : bins){
@@ -79,19 +70,16 @@ show_histogram_text(const vector<size_t>& bins){
         }
         cout << bin << "|";
 
-        size_t height = bin;
-
-         if (scaling_needed) {
-            const double koeff = (double)MAX_ASTERISK / max_count;
-            height = (size_t)(bin * koeff);
-        }
 
 
-        for(size_t i = 0; i < height; i++){
+
+     for(size_t i = 0; i < bin; i++){
             cout << "*";}
         cout << endl;
 
     }
+
+
 
     return;
 }
@@ -140,8 +128,31 @@ show_histogram_svg(const vector<size_t>& bins) {
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
 
     double top = 0;
+
+       size_t max_count = bins[0];
+    for(size_t bin : bins){
+        if (bin > max_count) {
+            max_count = bin;
+        }
+     }
+     const size_t SCREEN_WIDTH = 100;
+     const size_t MAX_ASTERISK = SCREEN_WIDTH - 50 - 20;
+
+
     for (size_t bin : bins) {
-        const double bin_width = BLOCK_WIDTH * bin;
+
+
+     const bool scaling_needed = max_count < MAX_ASTERISK;
+
+     size_t binkoeff = bin;
+
+         if (scaling_needed) {
+            const double koeff = (double)MAX_ASTERISK / max_count;
+            binkoeff= (size_t)(bin * koeff);
+        }
+
+
+        const double bin_width = BLOCK_WIDTH * binkoeff;
         svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "green", "#ffeeee");
         top += BIN_HEIGHT;
