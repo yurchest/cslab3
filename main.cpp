@@ -19,12 +19,27 @@ int main()
     cerr<<"Enter bin count ";
     cin>>bin_count;
 
+    string text_decoration;
+    cerr << "Enter text decoration parametr";
+    cin >> text_decoration;
+
+
+
+   if (check_text_parametr(text_decoration) == false){
+        cerr << "Text parametr is incorrect. Please rewrite it and restart the program";
+        svg_begin(1000,500);
+        svg_text(20, 20, "Text parametr is incorrect. Please rewrite it and restart the program");
+        svg_end();
+    return 1;
+    }
+
+
     //MAKE HISTOGRAM
     const auto bins = make_histogram(numbers, bin_count);
 
     //SHOW HISTOGRAM
     // show_histogram_text(bins);
-    show_histogram_svg(bins);
+    show_histogram_svg(bins,text_decoration);
 
     return 0;
 }

@@ -15,6 +15,15 @@ input_numbers(size_t count) {
     return result;
 }
 
+bool check_text_parametr(string text_decoration){
+
+     if((text_decoration != "none") && (text_decoration != "underline") && (text_decoration != "overline") && (text_decoration != "line-through")){
+     return false;
+     }
+
+    return true;
+}
+
 void
 find_minmax(const vector<double>& numbers, double& min, double& max){
 

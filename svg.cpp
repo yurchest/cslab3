@@ -6,13 +6,13 @@ using namespace std;
 
 
 void
-svg_text(double left, double baseline, string text) {
-    cout << "<text x='" << left << "' y='" << baseline << "' >"<< text <<"</text>";
+svg_text(double left, double baseline, string text, string text_decoration) {
+    cout << "<text x='" << left << "' y='" << baseline << "' text-decoration='" << text_decoration << "' >" << text <<"</text>";
 }
 
 void
 svg_rect(double x, double y, double width, double height,
-        string stroke, string fil){
+        string stroke , string fil){
     cout << "<rect x='" << x <<"' y='" << y << "' width='" << width << "' height='" << height
     << "' stroke='" << stroke << "' fill='" << fil << "' />";
 }
@@ -34,7 +34,7 @@ svg_end() {
 }
 
 void
-show_histogram_svg(const vector<size_t>& bins) {
+show_histogram_svg(const vector<size_t>& bins,string text_decoration) {
 
     const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
@@ -72,7 +72,7 @@ show_histogram_svg(const vector<size_t>& bins) {
 
 
         const double bin_width = BLOCK_WIDTH * binkoeff;
-        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
+        svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin), text_decoration);
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "green", "#ffeeee");
         top += BIN_HEIGHT;
     }

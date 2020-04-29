@@ -47,10 +47,26 @@ test_same_numbers(){
     assert(max == 2);
 }
 
+void
+test_text_parametr_true(){
+    assert(check_text_parametr("underline") == true);
+
+}
+
+void
+test_text_parametr_false(){
+    assert(check_text_parametr("podcherknuto") == false);
+
+}
+
+
 int main() {
     test_positive();
     test_negative();
     test_one_number();
     test_empty_vector();
     test_same_numbers();
+
+    test_text_parametr_true();
+    test_text_parametr_false();
 }
