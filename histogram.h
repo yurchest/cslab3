@@ -15,6 +15,7 @@ struct Input {
 
 void find_minmax(const vector<double>& numbers, double& min, double& max);
 vector<double> input_numbers(istream& in, size_t count);
+Input read_input(istream& in, bool prompt);
 bool check_text_parametr(string text_decoration);
 void find_minmax(const vector<double>& numbers, double& min, double& max);
 vector<size_t> make_histogram(const Input input);

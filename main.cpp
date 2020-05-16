@@ -7,34 +7,11 @@ using namespace std;
 
 
 
-Input
-read_input(istream& in) {
-    Input data;
-
-    cerr << "Enter number count: ";
-    size_t number_count;
-    cin >> number_count;
-
-    cerr << "Enter numbers: ";
-    data.numbers = input_numbers(in, number_count);
-
-    cerr << "Enter bin count ";
-    in >> data.bin_count;
-
-/*
-    cerr << "Enter text decoration parametr";
-    string text_decoration;
-    cin >> text_decoration;
-*/
-
-    return data;
-}
-
 int main()
 {
     string text_decoration;
 
-    const auto input = read_input(cin);
+    const auto input = read_input(cin, true);
 
 /*
     if (check_text_parametr(text_decoration) == false){

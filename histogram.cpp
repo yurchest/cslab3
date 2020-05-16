@@ -26,6 +26,31 @@ input_numbers(istream& in, size_t count) {
     return result;
 }
 
+
+Input
+read_input(istream& in, bool prompt) {
+    Input data;
+
+    if (prompt) cerr << "Enter number count: ";
+    size_t number_count;
+    cin >> number_count;
+
+    if (prompt) cerr << "Enter numbers: ";
+    data.numbers = input_numbers(in, number_count);
+
+    if (prompt) cerr << "Enter bin count ";
+    in >> data.bin_count;
+
+/*
+    cerr << "Enter text decoration parametr";
+    string text_decoration;
+    cin >> text_decoration;
+*/
+
+    return data;
+}
+
+
 bool check_text_parametr(string text_decoration){
 
      if((text_decoration != "none") && (text_decoration != "underline") && (text_decoration != "overline") && (text_decoration != "line-through")){
