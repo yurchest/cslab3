@@ -16,6 +16,7 @@ input_numbers(size_t count) {
 
 */
 
+
 vector<double>
 input_numbers(istream& in, size_t count) {
     vector<double> result(count);
@@ -56,14 +57,15 @@ find_minmax(const vector<double>& numbers, double& min, double& max){
 }
 
 vector<size_t>
-make_histogram(const vector<double> numbers, size_t bin_count){
+make_histogram(const Input input){
 
-    vector<size_t> bins(bin_count, 0);
+
+    vector<size_t> bins(input.bin_count, 0);
     double min, max;
-    find_minmax(numbers, min, max);
-    for (double x : numbers){
-        size_t bin_index = (size_t)((x - min)/(max - min) * bin_count);
-        if (bin_index == bin_count){
+    find_minmax(input.numbers, min, max);
+    for (double x : input.numbers){
+        size_t bin_index = (size_t)((x - min)/(max - min) * input.bin_count);
+        if (bin_index == input.bin_count){
             bin_index--;
         }
     bins[bin_index]++;
