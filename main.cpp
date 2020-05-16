@@ -7,7 +7,6 @@ using namespace std;
 
 int main()
 {
-
     size_t number_count;
     cerr<<"Enter number count ";
     cin>>number_count;
@@ -23,8 +22,6 @@ int main()
     cerr << "Enter text decoration parametr";
     cin >> text_decoration;
 
-
-
    if (check_text_parametr(text_decoration) == false){
         cerr << "Text parametr is incorrect. Please rewrite it and restart the program";
         svg_begin(1000,500);
@@ -33,12 +30,9 @@ int main()
     return 1;
     }
 
-
     //MAKE HISTOGRAM
     const auto bins = make_histogram(numbers, bin_count);
 
-    //SHOW HISTOGRAM
-    // show_histogram_text(bins);
     show_histogram_svg(bins,text_decoration);
 
     return 0;

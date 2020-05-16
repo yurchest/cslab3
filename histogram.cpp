@@ -4,8 +4,6 @@
 
 using namespace std;
 
-
-
 vector<double>
 input_numbers(size_t count) {
     vector<double> result(count);
@@ -92,8 +90,3 @@ show_histogram_text(const vector<size_t>& bins){
 
     return;
 }
-
-
-
-
-
