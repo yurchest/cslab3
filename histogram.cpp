@@ -56,7 +56,7 @@ find_minmax(const vector<double>& numbers, double& min, double& max){
 }
 
 vector<size_t>
-make_histogram(const vector<double>& numbers, size_t& bin_count){
+make_histogram(const vector<double> numbers, size_t bin_count){
 
     vector<size_t> bins(bin_count, 0);
     double min, max;
