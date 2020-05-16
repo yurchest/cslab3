@@ -5,6 +5,8 @@
 
 using namespace std;
 
+
+
 int main()
 {
     size_t number_count;
@@ -12,7 +14,7 @@ int main()
     cin>>number_count;
 
     cerr<<"Enter massive"<<endl;
-    const auto numbers = input_numbers(number_count);
+    const auto numbers = input_numbers(cin, number_count);
 
     size_t bin_count;
     cerr<<"Enter bin count ";
