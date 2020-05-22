@@ -3,10 +3,14 @@
 #include "histogram.h"
 #include "svg.h"
 
+#include <sys/utsname.h>
+
 using namespace std;
 
 int main()
 {
+
+
     size_t number_count;
     cerr<<"Enter number count ";
     cin>>number_count;
