@@ -44,11 +44,10 @@ read_input(istream& in, bool prompt) {
     if (prompt) cerr << "Enter bin count ";
     in >> data.bin_count;
 
-/*
-    cerr << "Enter text decoration parametr";
+    if (prompt) cerr << "Enter text decoration parametr";
     string text_decoration;
-    in >> text_decoration;
-*/
+    in >> data.text_decoration;
+
 
     return data;
 }
@@ -87,7 +86,7 @@ download(const string& address) {
 
 bool check_text_parametr(string text_decoration){
 
-     if((text_decoration != "none") && (text_decoration != "underline") && (text_decoration != "overline") && (text_decoration != "line-through")){
+     if((text_decoration != "none") && (text_decoration != "underline") && (text_decoration != "overline") && (text_decoration != "line-through") && (text_decoration != "")){
      return false;
      }
 
