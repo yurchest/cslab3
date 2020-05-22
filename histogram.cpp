@@ -92,8 +92,6 @@ download(const string& address) {
 
 }
 
-
-
 bool check_text_parametr(string text_decoration){
 
      if((text_decoration != "none") && (text_decoration != "underline") && (text_decoration != "overline") && (text_decoration != "line-through") && (text_decoration != "")){
@@ -110,7 +108,6 @@ find_minmax(const vector<double>& numbers, double& min, double& max){
         return;
         }
 
-
     min = numbers[0];
     max = numbers[0];
     for (double x : numbers) {
@@ -126,8 +123,6 @@ find_minmax(const vector<double>& numbers, double& min, double& max){
 
 vector<size_t>
 make_histogram(const Input input){
-
-
     vector<size_t> bins(input.bin_count, 0);
     double min, max;
     find_minmax(input.numbers, min, max);
@@ -145,10 +140,6 @@ make_histogram(const Input input){
 void
 show_histogram_text(const vector<size_t>& bins){
 
-
-
-
-
     for(size_t bin : bins){
 
         if (bin < 100) {
@@ -159,16 +150,10 @@ show_histogram_text(const vector<size_t>& bins){
         }
         cout << bin << "|";
 
-
-
-
      for(size_t i = 0; i < bin; i++){
             cout << "*";}
         cout << endl;
 
     }
-
-
-
     return;
 }
