@@ -45,7 +45,7 @@ make_info_text() {
     stringstream buffer;
     struct utsname namesys;
     uname(&namesys);
-    buffer << namesys.sysname << " ( " << namesys.version << " )" << endl;
+    buffer << namesys.sysname << " ( " << namesys.version << " ) | ";
     buffer << "Computer name: " << namesys.nodename;
 
     return buffer.str();
