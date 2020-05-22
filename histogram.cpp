@@ -63,14 +63,24 @@ write_data(void* items, size_t item_size, size_t item_count, void* ctx) {
 Input
 download(const string& address) {
     stringstream buffer;
+    double namelookup;
 
     curl_global_init(CURL_GLOBAL_ALL);
     CURL* curl = curl_easy_init();
     if(curl) {
         CURLcode res;
         curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
+        res = curl_easy_perform(curl);
+        if(CURLE_OK == res) {
+            res = curl_easy_getinfo(curl, CURLINFO_NAMELOOKUP_TIME, &namelookup);
+            if(CURLE_OK == res) {
+                cerr << "time lookup = " << namelookup << endl;
+            }
+        }
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
+
+
         res = curl_easy_perform(curl);
         if (res) {
             cerr << curl_easy_strerror(res) << endl;
