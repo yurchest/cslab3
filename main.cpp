@@ -4,12 +4,13 @@
 #include "svg.h"
 #include <curl/curl.h>
 
+#include <sys/utsname.h>
+
 using namespace std;
 
 
+int main(int argc, char* argv[]){
 
-int main(int argc, char* argv[])
-{
     Input input;
 
     if (argc > 1) {

@@ -3,7 +3,9 @@
 #include <vector>
 #include <sstream>
 #include <string>
+
 #include <curl/curl.h>
+
 
 using namespace std;
 
@@ -70,13 +72,6 @@ download(const string& address) {
     if(curl) {
         CURLcode res;
         curl_easy_setopt(curl, CURLOPT_URL, address.c_str());
-        res = curl_easy_perform(curl);
-        if(CURLE_OK == res) {
-            res = curl_easy_getinfo(curl, CURLINFO_NAMELOOKUP_TIME, &namelookup);
-            if(CURLE_OK == res) {
-                cerr << "time lookup = " << namelookup << endl;
-            }
-        }
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
 
@@ -86,6 +81,15 @@ download(const string& address) {
             cerr << curl_easy_strerror(res) << endl;
             exit(1);
         }
+
+        if(CURLE_OK == res) {
+            res = curl_easy_getinfo(curl, CURLINFO_NAMELOOKUP_TIME, &namelookup);
+            if(CURLE_OK == res) {
+               cerr << "time lookup = " << namelookup << endl;
+
+            }
+        }
+
     }
     curl_easy_cleanup(curl);
     return read_input(buffer, false);

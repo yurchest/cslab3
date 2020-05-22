@@ -1,6 +1,10 @@
 #include "histogram.h"
 #include <iostream>
 #include <vector>
+#include <sstream>
+#include <string>
+
+#include <sys/utsname.h>
 
 using namespace std;
 
@@ -33,10 +37,26 @@ svg_end() {
     cout << "</svg>\n";
 }
 
+string
+make_info_text() {
+
+//Windows v5.1 (build 1234)
+//Computer name: My-Comp
+
+    stringstream buffer;
+    struct utsname namesys;
+    uname(&namesys);
+    buffer << namesys.sysname << " ( " << namesys.version << " ) | ";
+    buffer << "Computer name: " << namesys.nodename;
+
+    return buffer.str();
+}
+
+
 void
 show_histogram_svg(const vector<size_t>& bins,string text_decoration) {
 
-    const auto IMAGE_WIDTH = 400;
+    const auto IMAGE_WIDTH = 1000;
     const auto IMAGE_HEIGHT = 300;
     const auto TEXT_LEFT = 20;
     const auto TEXT_BASELINE = 20;
@@ -46,7 +66,7 @@ show_histogram_svg(const vector<size_t>& bins,string text_decoration) {
 
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
 
-    double top = 0;
+    double top = 20;
 
        size_t max_count = bins[0];
     for(size_t bin : bins){
@@ -75,7 +95,9 @@ show_histogram_svg(const vector<size_t>& bins,string text_decoration) {
         svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin), text_decoration);
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "green", "#ffeeee");
         top += BIN_HEIGHT;
+
     }
+    svg_text(TEXT_LEFT, top + TEXT_BASELINE, make_info_text(), text_decoration);
 
    // svg_text(TEXT_LEFT, TEXT_BASELINE, to_string(bins[0]));
    // svg_rect(TEXT_WIDTH, 0, bins[0] * BLOCK_WIDTH, BIN_HEIGHT);
