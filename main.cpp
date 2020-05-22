@@ -10,27 +10,20 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    curl_global_init(CURL_GLOBAL_ALL);
-
-    if (argc > 1){
-        CURL *curl = curl_easy_init();
-        if(curl) {
-          CURLcode res;
-          curl_easy_setopt(curl, CURLOPT_URL, argv[1]);
-          res = curl_easy_perform(curl);
-          if (res) {
-                cerr << curl_easy_strerror(res) << endl;
-                exit(1);
-            }
-          curl_easy_cleanup(curl);
-        }
-
-        return 0;
-    }
+    Input input;
 
     string text_decoration;
 
-    const auto input = read_input(cin, true);
+
+    if (argc > 1) {
+        input = download(argv[1]);
+    } else {
+        input = read_input(cin, true);
+    }
+
+
+
+
 
 /*
     if (check_text_parametr(text_decoration) == false){
